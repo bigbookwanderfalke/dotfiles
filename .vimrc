@@ -26,6 +26,8 @@ nnoremap <Esc><Esc> :<C-u>nohlsearch<CR><Esc>|
 " ------------------------------------------------------------------------------
 " display
 " ------------------------------------------------------------------------------
+colorscheme desert
+syntax on
 set showmatch
 set matchpairs& matchpairs+=<:>
 set matchtime=3

@@ -1,0 +1,13 @@
+
+startup_message off
+
+defencoding utf-8
+encoding utf-8 utf-8
+setenv LANG ja_JP.UTF-8
+
+hardstatus alwayslastline "%H[%n] [%w]"
+termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+shelltitle "$ |bash"
+
+caption always "%?%F%{= rw}%:%%{= bw}%?%H %-w%?%F%{=bu dk}%:%{=bu dc}%?%n %t%{-}%+w"
+
