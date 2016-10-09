@@ -5,6 +5,7 @@
 augroup vimrc
   autocmd!
 augroup END
+
 " ------------------------------------------------------------------------------
 " effective vim customize
 " ------------------------------------------------------------------------------
@@ -13,6 +14,7 @@ nmap     <Space>v [vimrc]|
 nnoremap [vimrc]e :<C-u>edit $MYVIMRC<CR>|
 nnoremap [vimrc]s :<C-u>source $MYVIMRC<CR>|
 nnoremap [vimrc]h :<C-u>helpgrep<Space>|
+
 " ------------------------------------------------------------------------------
 " search
 " ------------------------------------------------------------------------------
@@ -35,6 +37,13 @@ set nowrap
 set scrolloff=4
 set number
 set visualbell
+set list
+set listchars=tab:>-,extends:<,trail:-,eol:<
+set showtabline=2
+highlight Pmenu ctermbg=White
+highlight PmenuSel ctermbg=Green
+highlight PmenuSber ctermbg=Green
+
 " ------------------------------------------------------------------------------
 " edit
 " ------------------------------------------------------------------------------
@@ -48,6 +57,7 @@ set formatoptions=q
 if has("unix")
   cnoremap w!! w !sudo tee % >/dev/null|
 endif
+
 " ------------------------------------------------------------------------------
 " undo/backup/swap/book/hist
 " ------------------------------------------------------------------------------
@@ -67,15 +77,24 @@ if !isdirectory(&directory)
   call mkdir(&directory, "p")
 endif
 let g:netrw_home=expand('~/')
+
 " ------------------------------------------------------------------------------
 " statusline
 " ------------------------------------------------------------------------------
 set laststatus=2
+set statusline=[%n]
+set statusline+=%<%F
+set statusline+=%m
+set statusline+=%r
+set statusline+=%h
+set statusline+=%w\%=[%Y]\[%{&ff}]\[%{&fileencoding}]\[%l/%L]
 set showcmd
+
 " ------------------------------------------------------------------------------
 " CJK multibyte
 " ------------------------------------------------------------------------------
 set ambiwidth=double
+
 " ------------------------------------------------------------------------------
 " window
 " ------------------------------------------------------------------------------
@@ -87,16 +106,19 @@ nnoremap <C-k> <C-w>k|
 nnoremap <C-l> <C-w>l|
 nnoremap - <C-u>:split<CR>|
 nnoremap <Bar> <C-u>:vsplit<CR>|
+
 " ------------------------------------------------------------------------------
 " buffer
 " ------------------------------------------------------------------------------
 nnoremap < :bp<CR>|
 nnoremap > :bn<CR>|
+
 " ------------------------------------------------------------------------------
 " menu
 " ------------------------------------------------------------------------------
 set wildmenu
-set wildmode=list:longest
+set wildmode=list,longest,full
+
 " ------------------------------------------------------------------------------
 " indent
 " ------------------------------------------------------------------------------
@@ -109,5 +131,26 @@ autocmd vimrc FileType html       setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd vimrc FileType python     setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd vimrc FileType fortran    setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd vimrc FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
+
+" ------------------------------------------------------------------------------
+" menu
+" ------------------------------------------------------------------------------
+menu User.Buffer.BuffurList :ls<CR>
+menu User.Buffer.RegisterList :dis<CR>
+menu User.Buffer.HistryList :his<CR>
+menu User.Buffer.MarkList :marks<CR>
+menu User.Buffer.JumpList :jumps<CR>
+set wildcharm=<TAB>
+if has('gui')
+	nmap <M-l> :emenu <TAB>
+else
+	nmap <ESC>l :emenu <TAB>
+endif
+
+" ------------------------------------------------------------------------------
+" quickfix
+" ------------------------------------------------------------------------------
+autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+autocmd QuickfixCmdPost l* lopen
 
 filetype plugin indent on
