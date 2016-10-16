@@ -3,14 +3,14 @@
 " reset vimrc autocmd group
 " ------------------------------------------------------------------------------
 augroup vimrc
-  autocmd!
+	autocmd!
 augroup END
 
 " ------------------------------------------------------------------------------
 " effective vim customize
 " ------------------------------------------------------------------------------
 nnoremap [vimrc] <Nop>|
-nmap     <Space>v [vimrc]|
+nmap	 <Space>v [vimrc]|
 nnoremap [vimrc]e :<C-u>edit $MYVIMRC<CR>|
 nnoremap [vimrc]s :<C-u>source $MYVIMRC<CR>|
 nnoremap [vimrc]h :<C-u>helpgrep<Space>|
@@ -55,26 +55,26 @@ set backspace=indent,eol,start
 set textwidth=0
 set formatoptions=q
 if has("unix")
-  cnoremap w!! w !sudo tee % >/dev/null|
+	cnoremap w!! w !sudo tee % >/dev/null|
 endif
 
 " ------------------------------------------------------------------------------
 " undo/backup/swap/book/hist
 " ------------------------------------------------------------------------------
 if has("persistent_undo")
-  set undofile
-  set undodir=~/.vim_undo
-  if !isdirectory(&undodir)
-    call mkdir(&undodir, "p")
-  endif
+	set undofile
+	set undodir=~/.vim_undo
+	if !isdirectory(&undodir)
+		call mkdir(&undodir, "p")
+	endif
 endif
 set backupdir=~/.vim_backup
 if !isdirectory(&backupdir)
-  call mkdir(&backupdir, "p")
+	call mkdir(&backupdir, "p")
 endif
 set directory=~/.vim_swapfile
 if !isdirectory(&directory)
-  call mkdir(&directory, "p")
+	call mkdir(&directory, "p")
 endif
 let g:netrw_home=expand('~/')
 
@@ -100,12 +100,12 @@ set ambiwidth=double
 " ------------------------------------------------------------------------------
 set splitbelow
 set splitright
-nnoremap <C-h> <C-w>h|
-nnoremap <C-j> <C-w>j|
-nnoremap <C-k> <C-w>k|
-nnoremap <C-l> <C-w>l|
-nnoremap - <C-u>:split<CR>|
-nnoremap <Bar> <C-u>:vsplit<CR>|
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+"nnoremap - <C-u>:split<CR>|
+"nnoremap <Bar> <C-u>:vsplit<CR>|
 
 " ------------------------------------------------------------------------------
 " buffer
@@ -122,15 +122,17 @@ set wildmode=list,longest,full
 " ------------------------------------------------------------------------------
 " indent
 " ------------------------------------------------------------------------------
-set tabstop=8
-autocmd vimrc FileType c          setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd vimrc FileType sh         setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd vimrc FileType awk        setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd vimrc FileType xml        setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd vimrc FileType html       setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd vimrc FileType python     setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd vimrc FileType fortran    setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd vimrc FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+"autocmd vimrc FileType c			setlocal expandtab shiftwidth=4 softtabstop=4
+"autocmd vimrc FileType sh			setlocal expandtab shiftwidth=2 softtabstop=2
+"autocmd vimrc FileType awk			setlocal expandtab shiftwidth=2 softtabstop=2
+"autocmd vimrc FileType xml			setlocal expandtab shiftwidth=2 softtabstop=2
+"autocmd vimrc FileType html		setlocal expandtab shiftwidth=2 softtabstop=2
+"autocmd vimrc FileType python		setlocal expandtab shiftwidth=4 softtabstop=4
+"autocmd vimrc FileType fortran		setlocal expandtab shiftwidth=2 softtabstop=2
+"autocmd vimrc FileType javascript	setlocal expandtab shiftwidth=2 softtabstop=2
 
 " ------------------------------------------------------------------------------
 " menu
@@ -152,5 +154,12 @@ endif
 " ------------------------------------------------------------------------------
 autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 autocmd QuickfixCmdPost l* lopen
+
+" ------------------------------------------------------------------------------
+" key combination
+" ------------------------------------------------------------------------------
+nnoremap <Space>q :quit<CR>
+nnoremap <Space>w :write<CR>
+nnoremap <Space>W :write!<CR>
 
 filetype plugin indent on
