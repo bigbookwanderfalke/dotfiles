@@ -1,6 +1,6 @@
 [user]
 	email = bigbookwanderfalke@gmail.com
-	name = bigbook.wanderfalke
+	name = bigbookwanderfalke
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 [color]
